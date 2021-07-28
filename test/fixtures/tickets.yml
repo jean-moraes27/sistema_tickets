@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  opened_by: 1
+  attendant: 1
+  type: 1
+  status: 1
+  title: MyString
+  content: MyString
+
+two:
+  opened_by: 1
+  attendant: 1
+  type: 1
+  status: 1
+  title: MyString
+  content: MyString
