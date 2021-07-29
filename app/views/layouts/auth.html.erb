@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title><%= @page_title ? @page_title + ' | Tickets' : 'Tickets'  %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body class="login-page" style="min-height: 496.8px;">
+<div class="login-box">
+  <div class="login-logo">
+    Tickets
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Entrar no sistema</p>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

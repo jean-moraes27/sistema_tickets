@@ -1,0 +1,46 @@
+<% flash.each do |type, msg| %>
+    <% if type == "alert" %>
+        <div class="alert alert-danger">
+            <%= msg %>
+        </div>
+    <% end %>
+    <% if type == "notice" %>
+        <div class="alert alert-success">
+            <%= msg %>
+        </div>
+    <% end %>
+<% end %>
+<%= form_for :session, url: sign_in_path do |f| %>
+    <div class="input-group mb-3">
+        <%= 
+            f.email_field :email,
+            autofocus: true,
+            class:"form-control",
+            placeholder:"E-mail" %>
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <%= 
+            f.password_field :password,
+            autocomplete: "off",
+            class:"form-control",
+            placeholder:"Senha" %>
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+        </div>
+        <div class="col-4">
+            <%= f.submit "Entrar", class: "btn btn-primary btn-block" %>
+        </div>
+        <!-- /.col -->
+    </div>
+<% end %>

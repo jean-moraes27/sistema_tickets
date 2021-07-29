@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[ show edit update destroy ]
-
-  # GET /tickets or /tickets.json
+  before_action :authorize
+  
   def index
     @tickets = Ticket.all
   end
