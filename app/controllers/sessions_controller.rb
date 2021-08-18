@@ -4,7 +4,7 @@
 class SessionsController < ApplicationController
   layout 'auth'
   def create
-    @user = User.where(['email = ? and active = ?', params[:session][:email].downcase, true]).first
+    @user = User.where(['email=? and active=?', getemail, true]).first
     if @user
       if @user.authenticate(params[:session][:password])
         sign_in(@user)
@@ -22,5 +22,11 @@ class SessionsController < ApplicationController
   def destroy
     sign_out
     redirect_to sign_in_path, notice: 'Sessão finalizada com sucesso'
+  end
+
+  private
+
+  def getemail
+    params[:session][:email].downcase
   end
 end

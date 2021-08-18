@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :opened_by %>
-    <%= form.number_field :opened_by %>
-  </div>
-
-  <div class="field">
     <%= form.label :attendant %>
     <%= form.number_field :attendant %>
   </div>
@@ -24,11 +19,6 @@
   <div class="field">
     <%= form.label :type %>
     <%= form.number_field :type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
   </div>
 
   <div class="field">
@@ -40,8 +30,11 @@
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
-
+  <div class="card-footer">
+    <%= link_to 'Voltar', tickets_path, class:"btn btn-default" %>
+    <button type="submit" class="btn btn-primary">Abrir chamado</button>
+  </div>
   <div class="actions">
-    <%= form.submit %>
+    
   </div>
 <% end %>
