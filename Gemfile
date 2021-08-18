@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '2.5.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
@@ -34,7 +34,7 @@ gem 'peek'
 
 gem 'pg'
 
-gem 'rubocop-airbnb'
+gem 'rubocop-airbnb', '~> 2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
