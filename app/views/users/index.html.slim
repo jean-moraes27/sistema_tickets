@@ -22,7 +22,9 @@ table.table.table-hover.table-bordered
                 .fas.fa-edit
               = link_to user,  method: :delete, data: { confirm: 'Deseja excluir este usuário?' }, class: "btn btn-sm btn-danger" do
                 .fas.fa-trash
-
-<br>
+    - else
+      tr
+        td colspan="100%" Nenhum registro encontrado
+br
 
 = link_to 'Novo usuário', new_user_path, class: "btn btn-success"

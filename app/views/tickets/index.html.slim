@@ -1,0 +1,52 @@
+p#notice
+  = notice
+
+h1 Tickets
+
+table.table.table-hover.table-bordered
+  thead
+    tr
+      td Atendente
+      td style="width: 50%" Titulo
+      td style="width: 10%" Tipo
+      td style="width: 10%" Situação
+      td style="width: 10%"
+  tbody
+    - unless @tickets.empty?
+      - @tickets.each do |ticket|
+        tr
+          td.atendente = ticket.atendente.name
+          td.titulo = ticket.title
+          td.type
+            - case ticket.tipo
+              - when 1 
+                | Suporte
+              - when 2
+                | Problema recorrente
+              - when 3
+                | Sugestão
+              - else
+                | Outro
+          td.status
+            - case ticket.status
+              - when 0
+                small.badge.badge-danger Aguardando atendimento
+              - when 1
+                small.badge.badge-warning Em atendimento
+              - when 2
+                small.badge.badge-success Resolvido
+              - else
+                small.badge.badge-primary Não reconhecido
+          td
+            .btn-group
+              = link_to ticket, class: "btn btn-sm btn-default" do
+                .fas.fa-eye
+              = link_to ticket, method: :delete, data: { confirm: 'Deseja excluir este usuário?' }, class: "btn btn-sm btn-danger" do
+                .fas.fa-trash
+    - else
+      tr
+        td colspan="100%" Nenhum registro encontrado
+
+br
+
+= link_to 'Novo ticket', new_ticket_path, class: "btn btn-success"
