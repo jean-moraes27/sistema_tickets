@@ -1,40 +1,47 @@
 p#notice = notice
 
-p
-  strong Atendente
-  = @ticket.atendente.name
-
-p
-  strong Tipo
-  - case @ticket.tipo
-    - when 1
-      | Problema recorrente
-    - when 2
-      | Suporte
-    - when 3
-      | Sugestão
-    - else
-      | Outro
-
-p
-  strong Status:
-  - case @ticket.status
-    - when 0
-      small.badge.badge-danger Aguardando atendimento
-    - when 1
-      small.badge.badge-warning Em atendimento
-    - when 2
-      small.badge.badge-success Resolvido
-    - else
-      small.badge.badge-primary Não reconhecido
-
-p
-  strong Título:
-  = @ticket.title
-
-p
-  strong Conteúdo do chamado:
-  = @ticket.content
+.invoice.p-3.mb-3
+  .row
+    .col-12
+      h4
+        i.fas.fa-clipboard-list.mr-3
+        | Ticket: #{ @ticket.title }
+        small.float-right
+          | Aberto em: #{ @ticket.created_at.strftime('%d/%m/%Y às %H:%M') }
+  .row.invoice-info
+    .col-12.invoice-col.pt-2
+      p
+        strong.mr-2 Chamado N:
+        = @ticket.id.to_s.rjust(6, '0')
+      p
+        strong.mr-2 Atendente:
+        = @ticket.atendente.name
+      p
+        strong.mr-2 Tipo:
+        - case @ticket.tipo
+          -when 1
+            | Problema recorrente
+          - when 2
+            | Suporte
+          - when 3
+            | Sugestão
+          - else
+            | Outro
+      p
+        strong.mr-2 Status:
+        - case @ticket.status
+          - when 0
+            small.badge.badge-danger Aguardando atendimento
+          - when 1
+            small.badge.badge-warning Em atendimento
+          - when 2
+            small.badge.badge-success Resolvido
+          - else
+            small.badge.badge-primary Não reconhecido
+      p
+        strong.mr-2 Conteúdo:
+        br
+        =@ticket.content
 
 = link_to 'Edit', edit_ticket_path(@ticket)
 = link_to 'Back', tickets_path
