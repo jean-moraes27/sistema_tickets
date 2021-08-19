@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+    title #{ @page_title ? @page_title + ' | Tickets' : 'Tickets' }
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
+
+    link rel='shortcut icon' href='/icon.png'
+    meta name='viewport' content='width=device-width,initial-scale=1'
+  body data-scrollbar-auto-hide='n' class='hold-transition sidebar-mini layout-fixed'
+    .wrapper
+      = render 'base/header'
+      = render 'base/sidebar'
+      .content-wrapper
+        .content-header
+          .container-fluid
+            .row.mb-2
+              .col-sm-6
+                h1.m-0.text-dark
+                  = yield :title
+              .col-sm-6
+                ol.breadcrumb.breadcrumb.float-sm-right
+                  = render_breadcrumbs :tag => :li, :separator => ' | '
+        .content.container-fluid
+          .container-fluid
+            = yield
+            = render 'peek/bar'
+    = render 'base/footer'
+    = render 'base/control_sidebar'
+      
+  = javascript_pack_tag 'application', 'data-turbolinks-track':  'reload'

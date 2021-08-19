@@ -36,6 +36,8 @@ gem 'peek'
 
 gem 'pg'
 
+gem 'slim'
+
 gem 'rubocop-airbnb', '~> 2'
 
 group :development, :test do
