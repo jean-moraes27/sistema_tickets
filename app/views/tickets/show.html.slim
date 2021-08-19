@@ -1,0 +1,40 @@
+p#notice = notice
+
+p
+  strong Atendente
+  = @ticket.atendente.name
+
+p
+  strong Tipo
+  - case @ticket.tipo
+    - when 1
+      | Problema recorrente
+    - when 2
+      | Suporte
+    - when 3
+      | Sugestão
+    - else
+      | Outro
+
+p
+  strong Status:
+  - case @ticket.status
+    - when 0
+      small.badge.badge-danger Aguardando atendimento
+    - when 1
+      small.badge.badge-warning Em atendimento
+    - when 2
+      small.badge.badge-success Resolvido
+    - else
+      small.badge.badge-primary Não reconhecido
+
+p
+  strong Título:
+  = @ticket.title
+
+p
+  strong Conteúdo do chamado:
+  = @ticket.content
+
+= link_to 'Edit', edit_ticket_path(@ticket)
+= link_to 'Back', tickets_path
