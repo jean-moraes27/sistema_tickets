@@ -1,0 +1,28 @@
+- if notice
+  .alert.alert-success
+    = notice
+
+h1 Usuários
+
+table.table.table-hover.table-bordered
+  thead
+    tr
+      th style="width: 40%;" Nome
+      th style="width: 40%;" E-mail
+      th style="width: 20%;"
+  tbody
+    - unless @users.empty?
+      -@users.each do |user|
+        tr
+          td.name = user.name
+          td.email = user.email
+          td
+            .btn-group
+              = link_to edit_user_path(user), class: "btn btn-sm btn-white" do
+                .fas.fa-edit
+              = link_to user,  method: :delete, data: { confirm: 'Deseja excluir este usuário?' }, class: "btn btn-sm btn-danger" do
+                .fas.fa-trash
+
+<br>
+
+= link_to 'Novo usuário', new_user_path, class: "btn btn-success"

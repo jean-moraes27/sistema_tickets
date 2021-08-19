@@ -1,0 +1,26 @@
+aside.main-sidebar.sidebar-dark-primary.elevation-4
+    a.brand-link href="/"
+        img.brand-image src="/icon.png" alt="Tickets"
+        span.brand-text.font-weight-light Tickets
+    .siderbar
+        .mt-2
+            ul.nav.nav-pills.nav-sidebar.flex-column data-widget="treeview" role="menu" data-accordion="false"
+                li.nav-item
+                    = link_to root_path, class: 'nav-link ' + active_class('/') do
+                        i.nav-icon.fa.fa-chart-line
+                        p Inicio
+
+                li.nav-item
+                    = link_to tickets_path, class: 'nav-link ' + active_class('/tickets') do
+                        i.nav-icon.fas.fa-clipboard-list
+                        p Chamados
+                
+                li.nav-item
+                    = link_to users_path, class: 'nav-link ' + active_class('/users') do
+                        i.nav-icon.fas.fa-users
+                        p Usuários
+
+                li.nav-item
+                    = link_to sign_out_path, method: :delete, class: 'nav-link' do
+                        i.nav-icon.fas.fa-sign-out-alt
+                        p Sair
