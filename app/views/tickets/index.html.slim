@@ -6,11 +6,11 @@ h1 Tickets
 table.table.table-hover.table-bordered
   thead
     tr
-      td Atendente
-      td style="width: 50%" Titulo
-      td style="width: 10%" Tipo
-      td style="width: 10%" Situação
-      td style="width: 10%"
+      th Atendente
+      th style="width: 50%" Titulo
+      th style="width: 10%" Tipo
+      th style="width: 10%" Situação
+      th style="width: 10%"
   tbody
     - unless @tickets.empty?
       - @tickets.each do |ticket|
@@ -19,7 +19,7 @@ table.table.table-hover.table-bordered
           td.titulo = ticket.title
           td.type
             - case ticket.tipo
-              - when 1 
+              - when 1
                 | Suporte
               - when 2
                 | Problema recorrente
@@ -39,9 +39,9 @@ table.table.table-hover.table-bordered
                 small.badge.badge-primary Não reconhecido
           td
             .btn-group
-              = link_to ticket, class: "btn btn-sm btn-default" do
+              = link_to ticket, class: 'btn btn-sm btn-default' do
                 .fas.fa-eye
-              = link_to ticket, method: :delete, data: { confirm: 'Deseja excluir este usuário?' }, class: "btn btn-sm btn-danger" do
+              = link_to ticket, method: :delete, data: { confirm: 'Deseja excluir este usuário?' }, class: 'btn btn-sm btn-danger' do
                 .fas.fa-trash
     - else
       tr
