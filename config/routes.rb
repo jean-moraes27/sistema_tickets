@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   get    'sign_in'   => 'sessions#new'
   post   'sign_in'   => 'sessions#create'
-  delete 'sign_out'  => 'sessions#destroy'
+  post '/ticket/resposta', to: 'tickets#reply_resposta'
+  delete 'sign_out' => 'sessions#destroy'
   mount Peek::Railtie => '/peek'
   root 'home#index'
 end

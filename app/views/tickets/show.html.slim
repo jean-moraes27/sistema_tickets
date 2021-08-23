@@ -1,5 +1,11 @@
 p#notice = notice
-
+- if @resposta.errors.any?
+  .alert.alert-danger
+      .alert-error
+          O formulário contém alguns erros
+      ul
+          - @resposta.errors.full_messages.each do |msg|
+              li = msg
 .invoice.p-3.mb-3
   .row
     .col-12
@@ -43,7 +49,23 @@ p#notice = notice
         br
         =@ticket.content
 - @ticket.respostas.each do |item|
-  = item.content
-
-= link_to 'Edit', edit_ticket_path(@ticket), class: "btn btn-default"
-= link_to 'Back', tickets_path, class: "btn btn-default"
+  .invoice.p-3.mb-3
+    .row
+      .col-12
+        p.lead Respondido por: #{ item.atendente.name }
+        p.text-muted.well.well-sm.shadow-none.mt-2
+          = item.content
+.invoice.p-3.mb-3
+  = form_for @resposta, :url => {:action => "reply_resposta"}, :html => { :method => :post } do |form|
+    .row.no-print
+      .col-12
+        = form.hidden_field :ticket_id, value: @ticket.id
+        = form.text_area :content, class:"form-control", placeholder: "Informe o conteúdo do chamado", size: '50x10'
+      .col-12.pt-3
+        = link_to 'Voltar', tickets_path, class: "btn btn-default"
+        button.btn.btn-success.float-right
+          i.fas.fa-save.mr-2
+          | Responder
+        button.btn.btn-info.float-right.mr-2
+          i.fas.fa-check.mr-2
+          | Encerrar chamado

@@ -52,7 +52,25 @@ class TicketsController < ApplicationController
   end
 
   def show
+    @resposta = TicketResposta.new
     @ticket = Ticket.find(params[:id])
+  end
+
+  def reply_resposta
+    @parameters = ticket_reply_params
+    @parameters[:attendant_id] = session[:user_id]
+    @resposta = TicketResposta.new(@parameters)
+    @ticket = Ticket.find(@resposta.ticket_id)
+    respond_to do |format|
+      if @resposta.save
+        format.html { redirect_to @ticket, notice: helpers.crd_msg('updated') }
+        format.json { render :show, status: :ok, location: @resposta }
+      else
+        # format.html { redirect_to @ticket, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @resposta.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -63,5 +81,9 @@ class TicketsController < ApplicationController
 
   def ticket_params
     params.require(:ticket).permit(:attendant, :tipo, :status, :title, :status, :content)
+  end
+
+  def ticket_reply_params
+    params.require(:ticket_resposta).permit(:content, :ticket_id)
   end
 end
