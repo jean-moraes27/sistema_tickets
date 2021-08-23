@@ -8,6 +8,7 @@ html
 
     link rel='shortcut icon' href='/icon.png'
     meta name='viewport' content='width=device-width,initial-scale=1'
+    = yield :header
   body data-scrollbar-auto-hide='n' class='hold-transition sidebar-mini layout-fixed'
     .wrapper
       = render 'base/header'
@@ -28,5 +29,6 @@ html
             = render 'peek/bar'
     = render 'base/footer'
     = render 'base/control_sidebar'
-      
+
   = javascript_pack_tag 'application', 'data-turbolinks-track':  'reload'
+  = yield :scripts

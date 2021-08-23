@@ -1,0 +1,27 @@
+- content_for :title, 'Página Inicial'
+div.row
+  div.col-lg-4.col-12
+    div.small-box.bg-warning
+      div.inner
+        h3 #{ @tickets_opened }
+        p Chamados Abertos
+      div.icon
+        i.fas.fa-history
+  div.col-lg-4.col-12
+    div.small-box.bg-success
+      div.inner
+        h3 #{ @tickets_closed }
+        p Chamados Encerrados
+      div.icon
+        i.fas.fa-clipboard-check
+  div.col-lg-4.col-12
+    div.small-box.bg-primary
+      div.inner
+        h3 #{ @tickets_attend }
+        p Chamados em atendimento
+      div.icon
+        i.fas.fa-user-clock
+div.row
+  div.col
+    canvas#chart data-labels="#{@chart_legendas}" data-data="#{@por_mes}"
+- content_for :script do

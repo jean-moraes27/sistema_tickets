@@ -7,6 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import Chart from 'chart.js/auto';
 
 Rails.start()
 Turbolinks.start()
@@ -15,4 +16,20 @@ ActiveStorage.start()
 import 'bootstrap';
 import '../src/application.css';
 import "@fortawesome/fontawesome-free/js/all";
+
 require('admin-lte');
+require('chart.js');
+
+document.addEventListener('turbolinks:load', () => {
+    var ctx = document.getElementById('chart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        responsive: true,
+        data: {
+        labels: JSON.parse(ctx.canvas.dataset.labels),
+        datasets: [{
+            data: JSON.parse(ctx.canvas.dataset.data),
+        }]
+        },
+    });
+});
