@@ -8,4 +8,5 @@ class Ticket < ApplicationRecord
   validates :content, presence: { message: 'Informe o conteúdo do chamado' }
 
   has_one :atendente, class_name: 'User', foreign_key: 'id', primary_key: 'attendant'
+  has_many :respostas, class_name: 'TicketResposta', foreign_key: 'ticket_id', primary_key: 'id'
 end
