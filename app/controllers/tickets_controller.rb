@@ -63,13 +63,21 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(@resposta.ticket_id)
     respond_to do |format|
       if @resposta.save
+        @ticket.update_attribute(:status, 1)
         format.html { redirect_to @ticket, notice: helpers.crd_msg('updated') }
         format.json { render :show, status: :ok, location: @resposta }
       else
-        # format.html { redirect_to @ticket, status: :unprocessable_entity }
         format.html { render :show, status: :unprocessable_entity }
         format.json { render json: @resposta.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def encerrar_ticket
+    @ticket = Ticket.find(params[:id])
+    if @ticket.present?
+      @ticket.update_attribute(:status, @ticket.status == 2 ? 1 : 2)
+      redirect_to tickets_url, notice: helpers.crd_msg('updated')
     end
   end
 

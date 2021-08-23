@@ -56,16 +56,20 @@ p#notice = notice
         p.text-muted.well.well-sm.shadow-none.mt-2
           = item.content
 .invoice.p-3.mb-3
-  = form_for @resposta, :url => {:action => "reply_resposta"}, :html => { :method => :post } do |form|
+  - if @ticket.status != 2
+    = form_for @resposta, :url => {:action => "reply_resposta"}, :html => { :method => :post } do |form|
+      .row.no-print
+        .col-12
+          = form.hidden_field :ticket_id, value: @ticket.id
+          = form.text_area :content, class:"form-control", placeholder: "Informe o conteúdo do chamado", size: '50x10'
+        .col-12.pt-3
+          = link_to 'Voltar', tickets_path, class: "btn btn-default"
+          button.btn.btn-success.float-right
+            i.fas.fa-save.mr-2
+            | Responder
+          = link_to "Encerrar chamados", { :controller => "tickets", :action => "encerrar_ticket", :id => @ticket }, :class => "btn btn-info float-right mr-2"
+  - else
     .row.no-print
-      .col-12
-        = form.hidden_field :ticket_id, value: @ticket.id
-        = form.text_area :content, class:"form-control", placeholder: "Informe o conteúdo do chamado", size: '50x10'
       .col-12.pt-3
         = link_to 'Voltar', tickets_path, class: "btn btn-default"
-        button.btn.btn-success.float-right
-          i.fas.fa-save.mr-2
-          | Responder
-        button.btn.btn-info.float-right.mr-2
-          i.fas.fa-check.mr-2
-          | Encerrar chamado
+        = link_to "Reabrir chamado", { :controller => "tickets", :action => "encerrar_ticket", :id => @ticket }, :class => "btn btn-info float-right mr-2"
