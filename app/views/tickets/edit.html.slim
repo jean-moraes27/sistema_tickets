@@ -1,0 +1,40 @@
+.card.card-primary
+    .card-header
+        h3.card-title Atualizar chamado
+    .card-body
+        - if @ticket.errors.any?
+            .alert.alert-danger
+                .alert-error
+                    O formulário contém alguns erros
+                ul
+                    - @ticket.errors.full_messages.each do |msg|
+                        li = msg
+        = form_for(@ticket) do |form|
+            .form-group
+                .row.mb-2
+                    .col-12.col-md-4
+                        label Atendente
+                        = form.text_field :attendant, {},{class: 'form-control'}
+                    .col-12.col-md-4
+                        label Tipo do chamado
+                        = form.select :tipo, {'Problema recorrente' => 1, 'Suporte' => 2, 'Sugestão' => 3}, {},{class: 'form-control'}
+                    .col-12.col-md-4
+                        label Situação
+                        = form.select :status, {'Aguardando atendimento' => 0, 'Em atendimento' => 1}, {},{class: 'form-control'}
+            .form-group
+                .row.mb-2
+                    .col-12
+                        label Título
+                        = form.text_field :title, class:"form-control", placeholder: "Informe o título do chamado"
+                        
+            .form-group
+                .row.mb-2
+                    .col-12
+                        label Conteúdo do chamado
+                        = form.text_area :content, class:"form-control", placeholder: "Informe o conteúdo do chamado", size: '50x10'
+            .form-group
+                .row.mb-2
+                    .col-12
+                        .btn-group
+                            = link_to 'Voltar', tickets_path, class: "btn btn-default"
+                            button.btn.btn-success Atualizar
