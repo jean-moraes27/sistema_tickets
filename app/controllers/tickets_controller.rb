@@ -13,6 +13,10 @@ class TicketsController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    @ticket = Ticket.find(params[:id])
+  end
+
   def create
     @ticket = Ticket.new(ticket_params)
     @users = User.all

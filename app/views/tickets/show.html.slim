@@ -43,5 +43,5 @@ p#notice = notice
         br
         =@ticket.content
 
-= link_to 'Edit', edit_ticket_path(@ticket)
-= link_to 'Back', tickets_path
+= link_to 'Edit', edit_ticket_path(@ticket), class: "btn btn-default"
+= link_to 'Back', tickets_path, class: "btn btn-default"
