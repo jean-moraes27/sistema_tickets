@@ -1,8 +1,11 @@
-p#notice = notice
+- flash.each do |type, msg|
+  div.alert.alert-success
+    = msg
+
 - if @resposta.errors.any?
   .alert.alert-danger
       .alert-error
-          O formulário contém alguns erros
+          'O formulário contém alguns erros
       ul
           - @resposta.errors.full_messages.each do |msg|
               li = msg
