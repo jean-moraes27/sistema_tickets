@@ -1,6 +1,6 @@
 - flash.each do |type, msg|
-  div.alert.alert-success
-    = msg
+    .alert.alert-success
+      = msg
 
 h1 Tickets
 
@@ -55,7 +55,7 @@ br
 br
 br
 
-div.digg_pagination
-    div.page_info
-      = page_entries_info @tickets
-      = will_paginate @tickets, :container => false
+.digg_pagination
+  .page_info
+    = page_entries_info @tickets
+    = will_paginate @tickets, :container => false
