@@ -48,6 +48,8 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
